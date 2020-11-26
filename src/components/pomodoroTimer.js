@@ -1,4 +1,4 @@
-let pomodoreInterval;
+let pomodoroInterval;
 
 let time = {
   hours: 0,
@@ -6,7 +6,7 @@ let time = {
   seconds: 0,
 };
 
-const updatePomodoreUI = () => {
+const updatepomodoroUI = () => {
   const hrsContainer = document.getElementById("hrs");
   const minsContainer = document.getElementById("mins");
   const secsContainer = document.getElementById("secs");
@@ -27,23 +27,23 @@ const getTime = () => {
 };
 
 const pauseTimer = () => {
-  clearInterval(pomodoreInterval);
+  clearInterval(pomodoroInterval);
 };
 
 const resetTimer = () => {
-  clearInterval(pomodoreInterval);
+  clearInterval(pomodoroInterval);
   time = {
     hours: 0,
     minutes: 0,
     seconds: 0,
   };
-  console.log("Pomodore timer resetted");
-  updatePomodoreUI();
+  console.log("pomodoro timer resetted");
+  updatepomodoroUI();
 };
 
 const startTimer = () => {
   console.log("Timer started");
-  pomodoreInterval = setInterval(() => {
+  pomodoroInterval = setInterval(() => {
     if (time.seconds < 0) {
       time.minutes--;
       time.seconds = 59;
@@ -55,7 +55,7 @@ const startTimer = () => {
     if (time.hours < 0) {
       resetTimer();
     }
-    updatePomodoreUI();
+    updatepomodoroUI();
     time.seconds--;
   }, 1000);
 };

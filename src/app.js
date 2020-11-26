@@ -5,7 +5,7 @@ import {
   resetTimer,
   setTime,
   getTime,
-} from "./components/pomodoreTimer.js";
+} from "./components/pomodoroTimer.js";
 import { updateTaskSelect } from "./helper/updateTaskSelectMarkup.js";
 import { updateTaskListMarkup } from "./helper/updateTaskListMarkup.js";
 const hrsContainer = document.getElementById("hrs");
@@ -14,6 +14,8 @@ const secsContainer = document.getElementById("secs");
 let taskList = [];
 
 window.onload = () => {
+  showWorkMins();
+  showBreakMins();
   setTime({
     hours: 0,
     minutes: 0,
@@ -57,8 +59,20 @@ const addTask = (event) => {
   }
 };
 
+const showWorkMins = () => {
+  let workMins = document.getElementById("workMinsInput").value;
+  document.getElementById("workMins").innerHTML = workMins;
+};
+
+const showBreakMins = () => {
+  let breakMins = document.getElementById("breakMinsInput").value;
+  document.getElementById("breakMins").innerHTML = breakMins;
+};
+
 window.addTask = addTask;
 window.startTimer = startTimer;
 window.pauseTimer = pauseTimer;
 window.resetTimer = resetTimer;
+window.showWorkMins = showWorkMins;
+window.showBreakMins = showBreakMins;
 export { taskList };

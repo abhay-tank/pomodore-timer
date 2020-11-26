@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Pomodore Timer</title>
+    <title>pomodoro Timer</title>
     <link rel="stylesheet" href="./styles/style.css" />
     <script
       src="https://kit.fontawesome.com/58a7331457.js"
@@ -12,7 +12,7 @@
   </head>
   <body>
     <div class="container">
-      <div class="pomodore-timer-container">
+      <div class="pomodoro-timer-container">
         <div class="time-container">
           <h1><span class="units">HRS</span> <span id="hrs"></span></h1>
           <span class="separator">:</span>
@@ -22,10 +22,39 @@
         </div>
         <div class="timer-control">
           <form
-            class="task-select-container"
+            class="task-select-container flex-col"
             id="taskSelect"
             name="taskSelectForm"
           >
+            <label for="minsInputRange"
+              >Select Work Mins (min 0, max 60) <span id="workMins"></span>
+            </label>
+            <input
+              type="range"
+              min="0"
+              max="60"
+              step="1"
+              name="workMinsInput"
+              id="workMinsInput"
+              value="25"
+              class="input-range"
+              onchange="showWorkMins()"
+            />
+            <label for="minsInputRange"
+              >Select Break Mins (min 0, max 60) <span id="breakMins"></span
+            ></label>
+            <input
+              type="range"
+              min="0"
+              max="60"
+              step="1"
+              name="breakMinsInput"
+              id="breakMinsInput"
+              value="5"
+              class="input-range"
+              onchange="showBreakMins()"
+            />
+
             <select name="selectTaskInput" id="selectTaskInput" required>
               <option class="hidden" value="" disabled selected>
                 👇 Select Task
@@ -54,11 +83,14 @@
               onclick="resetTimer()"
               alt="reset timer"
             />
+            <img
+              class="icon-button"
+              id="startTimerButton"
+              src="./images/completed.svg"
+              alt="start timer"
+            />
           </div>
         </div>
-      </div>
-      <div class="banner-container flex-col">
-        <img src="./images/working.gif" alt="" />
       </div>
       <div class="task-container">
         <form

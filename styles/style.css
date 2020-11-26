@@ -38,21 +38,24 @@ body {
   display: grid;
   grid-template-areas:
     "timer task"
-    "banner taskList"
-    "banner taskList";
+    "timer taskList"
+    "timer taskList";
 }
 
-.pomodore-timer-container {
+.pomodoro-timer-container {
   grid-area: timer;
   display: grid;
   grid-template-areas:
     "timer"
     "timer"
     "timerControl";
-  background-color: var(--primary-blue);
-  font-family: "Bungee Shade", cursive;
+  background-color: var(--primary-yellow);
   font-size: 2rem;
   text-align: center;
+}
+
+.input-range {
+  color: var(--primary-black);
 }
 
 .time-container {
@@ -60,6 +63,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-evenly;
+  font-family: "Bungee Shade", cursive;
   font-size: 3rem;
   color: var(--primary-black);
 }
@@ -100,6 +104,7 @@ select {
   color: white;
   appearance: none;
   padding: 1rem;
+  font-size: 1.5rem;
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.3), 0 3px 10px 0 rgba(0, 0, 0, 0.4);
 }
 
@@ -130,26 +135,18 @@ option {
 
 .task-container {
   grid-area: task;
-  position: sticky;
   background-color: var(--secondary-black);
 }
 
-.banner-container {
-  grid-area: banner;
-  background-color: var(--primary-black);
-}
-
-.banner-container img {
-  margin: 2rem 1rem;
-  width: 50%;
-}
 .task-form {
   margin: 2rem 0;
 }
+
 .task-form * {
   width: 80%;
   font-size: 1.5rem;
 }
+
 .button-btn {
   cursor: pointer;
   width: max-content;

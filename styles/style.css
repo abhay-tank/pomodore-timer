@@ -39,11 +39,16 @@ body {
 
 .container {
   height: 100vh;
+  min-width: 100%;
   display: grid;
   grid-template-areas:
     "timer task"
     "timer taskList"
     "timer taskList";
+}
+
+.grid-item {
+  border: 3px solid var(--primary-black);
 }
 
 @media screen and (max-width: 1100px) {

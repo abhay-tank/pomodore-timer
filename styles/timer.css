@@ -1,3 +1,5 @@
+@import url("./style.css");
+
 .pomodoro-timer-container {
   grid-area: timer;
   display: grid;

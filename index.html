@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pomodore Timer</title>
+    <link rel="stylesheet" href="./styles/style.css" />
+    <script
+      src="https://kit.fontawesome.com/58a7331457.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <div class="container">
+      <div class="pomodore-timer-container">
+        <div class="time-container">
+          <h1><span class="units">HRS</span> <span id="hrs"></span></h1>
+          <span class="separator">:</span>
+          <h1><span class="units">MINS</span> <span id="mins"></span></h1>
+          <span class="separator">:</span>
+          <h1><span class="units">SECS</span> <span id="secs"></span></h1>
+        </div>
+        <div class="timer-control">
+          <form
+            class="task-select-container"
+            id="taskSelect"
+            name="taskSelectForm"
+          >
+            <select name="selectTaskInput" id="selectTaskInput" required>
+              <option class="hidden" value="" disabled selected>
+                👇 Select Task
+              </option>
+            </select>
+          </form>
+          <div class="buttons-container">
+            <img
+              class="icon-button"
+              id="startTimerButton"
+              src="./images/start.svg"
+              onclick="startTimer()"
+              alt="start timer"
+            />
+            <img
+              class="icon-button"
+              id="pauseTimerButton"
+              src="./images/pause.svg"
+              onclick="pauseTimer()"
+              alt="pause timer"
+            />
+            <img
+              class="icon-button"
+              id="resetTimerButton"
+              src="./images/reset.svg"
+              onclick="resetTimer()"
+              alt="reset timer"
+            />
+          </div>
+        </div>
+      </div>
+      <div class="banner-container flex-col">
+        <img src="./images/working.gif" alt="" />
+      </div>
+      <div class="task-container">
+        <form
+          class="task-form flex-col"
+          id="taskListInput"
+          name="todoListInputForm"
+          onsubmit="addTask(event)"
+        >
+          <input
+            class="task-input"
+            type="text"
+            name="taskTitleInput"
+            id="taskTitle"
+            placeholder="Task Title"
+            autofocus
+            required
+          />
+          <textarea
+            class="task-input"
+            name="taskDescription"
+            id="taskDescInput"
+            cols="30"
+            rows="5"
+            placeholder="Task Description"
+          ></textarea>
+          <button class="button-btn" type="submit">Add Task</button>
+        </form>
+      </div>
+      <div class="task-list-container">
+        <div id="taskList"></div>
+      </div>
+    </div>
+    <script src="./src/app.js" type="module"></script>
+  </body>
+</html>

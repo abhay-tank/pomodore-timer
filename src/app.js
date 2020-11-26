@@ -5,29 +5,19 @@ import {
   resetTimer,
   setTime,
   getTime,
+  setWorkBreakTime,
 } from "./components/pomodoroTimer.js";
 import { updateTaskSelect } from "./helper/updateTaskSelectMarkup.js";
 import { updateTaskListMarkup } from "./helper/updateTaskListMarkup.js";
-const hrsContainer = document.getElementById("hrs");
+import { addTaskToActiveList } from "./helper/addTaskToActiveListMarkup.js"
+
 const minsContainer = document.getElementById("mins");
 const secsContainer = document.getElementById("secs");
 let taskList = [];
-
+let currentTask;
 window.onload = () => {
   showWorkMins();
   showBreakMins();
-  setTime({
-    hours: 0,
-    minutes: 0,
-    seconds: 3,
-  });
-  let time = getTime();
-  let hr = String(time.hours).padStart(2, "0");
-  let min = String(time.minutes).padStart(2, "0");
-  let sec = String(time.seconds).padStart(2, "0");
-  hrsContainer.innerHTML = hr;
-  minsContainer.innerHTML = min;
-  secsContainer.innerHTML = sec;
 };
 
 const addTask = (event) => {
@@ -59,6 +49,49 @@ const addTask = (event) => {
   }
 };
 
+const startPomodoro = () => {
+  try {
+    let workMins = document.getElementById("workMinsInput").value;
+    let breakMins = document.getElementById("breakMinsInput").value;
+    let selectedTask = document.getElementById("selectTaskInput").value;
+    console.log(selectedTask);
+    if (workMins >= 20 && workMins <= 30 && breakMins >= 5 && breakMins <= 30 && selectedTask.length && selectedTask != "") {
+      document.getElementById("logoSection").style.display = "none";
+      document.getElementById("taskSelect").style.display = "none";
+      document.getElementById("displayTime").style.display = "flex";
+      let task = taskList.find((task) => task.todoID == selectedTask);
+      currentTask = task;
+      console.log(task);
+      addTaskToActiveList(task);
+      setWorkBreakTime(2, 1);
+      startTimer();
+    } else {
+      throw new Error("Enter valid input");
+    }
+  } catch (error) {
+    console.error(error);
+    alert(error);
+  }
+}
+
+const pausePomodoro = () => {
+  pauseTimer();
+}
+
+const completedTask = () => {
+  pauseTimer();
+  document.getElementById("taskSelect").style.display = "flex";
+  alert("Select New Task or Reset Pomodoro Timer");
+  console.log(currentTask);
+  let taskIndex = taskList.findIndex((task) => task == currentTask);
+  taskList.splice(taskIndex, 1);
+  updateTaskSelect();
+  updateTaskListMarkup();
+  let activeTaskListContainer = document.getElementById("activeTask");
+  if (activeTaskListContainer.hasChildNodes()) {
+    activeTaskListContainer.querySelectorAll("*").forEach((node) => node.remove());
+  }
+}
 const showWorkMins = () => {
   let workMins = document.getElementById("workMinsInput").value;
   document.getElementById("workMins").innerHTML = workMins;
@@ -70,9 +103,9 @@ const showBreakMins = () => {
 };
 
 window.addTask = addTask;
-window.startTimer = startTimer;
-window.pauseTimer = pauseTimer;
-window.resetTimer = resetTimer;
+window.startPomodoro = startPomodoro;
+window.pausePomodoro = pausePomodoro;
+window.completedTask = completedTask;
 window.showWorkMins = showWorkMins;
 window.showBreakMins = showBreakMins;
 export { taskList };

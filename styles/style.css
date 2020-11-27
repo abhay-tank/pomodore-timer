@@ -41,6 +41,8 @@ body {
   height: 100vh;
   min-width: 100%;
   display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto;
   grid-template-areas:
     "timer task"
     "timer taskList"

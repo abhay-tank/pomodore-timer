@@ -35,7 +35,7 @@ const updateTaskListMarkup = () => {
     let clockIcon = document.createElement("i");
     clockIcon.classList.add("fas", "fa-clock");
     let createdAtSpan = document.createElement("span");
-    createdAtSpan.innerHTML = task.todoCreatedAt;
+    createdAtSpan.innerHTML = task.todoCreatedAt.toGMTString();
     createdAt.appendChild(clockIcon);
     createdAt.appendChild(createdAtSpan);
     taskItem.appendChild(createdAt);

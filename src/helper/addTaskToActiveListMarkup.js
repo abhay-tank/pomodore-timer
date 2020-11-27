@@ -1,7 +1,9 @@
 const addTaskToActiveList = (task) => {
   let activeTaskListContainer = document.getElementById("activeTask");
   if (activeTaskListContainer.hasChildNodes()) {
-    activeTaskListContainer.querySelectorAll("*").forEach((node) => node.remove());
+    activeTaskListContainer
+      .querySelectorAll("*")
+      .forEach((node) => node.remove());
   }
   let taskItem = document.createElement("div");
   taskItem.classList.add("task-item");
@@ -17,11 +19,11 @@ const addTaskToActiveList = (task) => {
   let clockIcon = document.createElement("i");
   clockIcon.classList.add("fas", "fa-clock");
   let createdAtSpan = document.createElement("span");
-  createdAtSpan.innerHTML = task.todoCreatedAt;
+  createdAtSpan.innerHTML = task.todoCreatedAt.toGMTString();
   createdAt.appendChild(clockIcon);
   createdAt.appendChild(createdAtSpan);
   taskItem.appendChild(createdAt);
   activeTaskListContainer.appendChild(taskItem);
-}
+};
 
 export { addTaskToActiveList };

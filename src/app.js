@@ -11,10 +11,12 @@ import { updateTaskListMarkup } from "./helper/updateTaskListMarkup.js";
 import { addTaskToActiveList } from "./helper/addTaskToActiveListMarkup.js";
 import * as controlButtons from "./components/controlButtons.js";
 
-const minsContainer = document.getElementById("mins");
-const secsContainer = document.getElementById("secs");
+// All tasks will be added here
 let taskList = [];
+
+// Current Active task object will be held here
 let currentTask;
+
 window.onload = () => {
 	controlButtons.pausePomodoroTimerButton.classList.add("disable");
 	controlButtons.resetPomodoroTimerButton.classList.add("disable");
@@ -24,6 +26,7 @@ window.onload = () => {
 	updatepomodoroUI();
 };
 
+// Add new task from form
 const addTask = (event) => {
 	event.preventDefault();
 	try {
@@ -53,6 +56,7 @@ const addTask = (event) => {
 	}
 };
 
+// Fetch worktime and breaktime values and start timer.
 const startPomodoro = () => {
 	try {
 		let workMins = document.getElementById("workMinsInput").value;
@@ -82,10 +86,14 @@ const startPomodoro = () => {
 	}
 };
 
+// Pausetimer... New function created if want to perform other task
+//  not specific to timer on pause
 const pausePomodoro = () => {
 	pauseTimer();
 };
 
+// On task completion pause pomodoro timer and show
+// task selection box and worktime and breaktime
 const completedTask = () => {
 	pauseTimer();
 	controlButtons.completedTaskButton.classList.add("disable");
@@ -103,20 +111,24 @@ const completedTask = () => {
 	}
 };
 
+// Reset values of pomodoro but keep current task in active task list
 const resetPomodoroTimer = () => {
 	hardResetPomodoro();
 };
 
+// Fetch values from Work Range input and display value in work span
 const showWorkMins = () => {
 	let workMins = document.getElementById("workMinsInput").value;
 	document.getElementById("workMins").innerHTML = workMins;
 };
 
+// Fetch values from Break Range input and display value in break span
 const showBreakMins = () => {
 	let breakMins = document.getElementById("breakMinsInput").value;
 	document.getElementById("breakMins").innerHTML = breakMins;
 };
 
+// Dismiss instruction displayed onload
 const closeInstructions = () => {
 	document.getElementById("bannerSection").style.display = "none";
 };
@@ -129,4 +141,7 @@ window.completedTask = completedTask;
 window.showWorkMins = showWorkMins;
 window.showBreakMins = showBreakMins;
 window.closeInstructions = closeInstructions;
+
+// TaskList and currentTask exported to
+// updateTaskListMarkup, updateTaskSelectMarkup and addTaskToActiveList respectively
 export { taskList, currentTask };

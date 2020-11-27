@@ -1,19 +1,6 @@
 import { taskList } from "../app.js";
 
-// <div class="task-item">
-//     <h1>Task Title</h1>
-//     <h3>Task content</h3>
-//     <h4>
-//         <i class="fas fa-clock"></i>
-//         created at
-//     </h4>
-// </div>;
-
-// todoID;
-// todoTitle;
-// todoContent;
-// todoCreatedAt;
-// todoCompleted;
+// Create Task cards
 const updateTaskListMarkup = () => {
 	let taskListContainer = document.getElementById("taskList");
 	if (taskListContainer.hasChildNodes()) {

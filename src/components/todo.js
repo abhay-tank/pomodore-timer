@@ -1,3 +1,5 @@
+// TodoTimeTracker will handle timer related functionality of task
+
 class TodoTimeTracker {
 	todoInterval;
 	time = {
@@ -46,6 +48,8 @@ class TodoTimeTracker {
 		}, 1000);
 	};
 }
+
+// Task Data will be stored in Todo Object
 
 class Todo extends TodoTimeTracker {
 	todoID;

@@ -1,5 +1,4 @@
-//  <i class="fas fa-hourglass-end fa-fw"></i>;
-// <h4 id=""> span /span span#activeHours span#activeMins span#activeSeconds </h4>
+// Add task as ActiveTask
 const addTaskToActiveList = (task) => {
 	let activeTaskListContainer = document.getElementById("activeTask");
 	if (activeTaskListContainer.hasChildNodes()) {

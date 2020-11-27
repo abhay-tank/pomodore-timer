@@ -10,6 +10,7 @@ let breakMins = 0;
 let work = 0;
 let pause = false;
 
+// Update Time
 const updatepomodoroUI = () => {
 	document.getElementById("displayTime").style.display = "flex";
 	document.getElementById("status").style.display = "none";
@@ -21,6 +22,7 @@ const updatepomodoroUI = () => {
 	secsContainer.innerHTML = sec;
 };
 
+// Set worktime or breaktime to countdown
 const setWorkBreakTime = (workMin, breakMin) => {
 	workMins = workMin;
 	breakMins = breakMin;
@@ -38,7 +40,10 @@ const setWorkBreakTime = (workMin, breakMin) => {
 			time = { minutes: workMins, seconds: 0 };
 			work = true;
 		}
-	} else if (time.minutes == 0 && time.seconds == 0) {
+	}
+	// If Pomodoro cycle is complete, time=00:00 and pause will be true
+	// task is also completed
+	else if (time.minutes == 0 && time.seconds == 0) {
 		if (work == 0) {
 			time = { minutes: workMins, seconds: 0 };
 			work = true;
@@ -55,6 +60,7 @@ const setWorkBreakTime = (workMin, breakMin) => {
 	console.log("Pause status", pause, "time set to", time);
 };
 
+// Pause Timer
 const pauseTimer = () => {
 	pause = true;
 	clearInterval(pomodoroInterval);
@@ -65,6 +71,7 @@ const pauseTimer = () => {
 	controlButtons.completedTaskButton.classList.remove("disable");
 };
 
+// On Cycle Complete clear interval
 const resetTimer = () => {
 	clearInterval(pomodoroInterval);
 	controlButtons.startPomodoroTimerButton.classList.remove("disable");
@@ -83,6 +90,7 @@ const resetTimer = () => {
 	}
 };
 
+// Start pomodoro timer
 const startTimer = () => {
 	pause = false;
 	currentTask.startTimer();
@@ -104,6 +112,7 @@ const startTimer = () => {
 	}, 100);
 };
 
+// Initialize values to 0
 const hardResetPomodoro = () => {
 	controlButtons.startPomodoroTimerButton.classList.remove("disable");
 	controlButtons.pausePomodoroTimerButton.classList.add("disable");

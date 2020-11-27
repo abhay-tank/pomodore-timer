@@ -1,5 +1,5 @@
 import * as controlButtons from "./controlButtons.js";
-
+import { currentTask } from "../app.js";
 let pomodoroInterval;
 let time = {
 	minutes: 0,
@@ -57,6 +57,7 @@ const pauseTimer = () => {
 	controlButtons.completedTaskButton.classList.remove("disable");
 	pause = true;
 	clearInterval(pomodoroInterval);
+	currentTask.pauseTimer();
 };
 
 const resetTimer = () => {
@@ -66,6 +67,7 @@ const resetTimer = () => {
 	controlButtons.resetPomodoroTimerButton.classList.add("disable");
 	document.getElementById("audioFile").play();
 	clearInterval(pomodoroInterval);
+	currentTask.pauseTimer();
 	updatepomodoroUI();
 	document.getElementById("displayTime").style.display = "none";
 	document.getElementById("logoSection").style.display = "flex";
@@ -81,6 +83,7 @@ const resetTimer = () => {
 };
 
 const startTimer = () => {
+	currentTask.startTimer();
 	controlButtons.startPomodoroTimerButton.classList.add("disable");
 	controlButtons.pausePomodoroTimerButton.classList.remove("disable");
 	controlButtons.completedTaskButton.classList.remove("disable");

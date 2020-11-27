@@ -1,83 +1,149 @@
 <!DOCTYPE html>
 <html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Pomodoro Timer</title>
+		<link rel="stylesheet" href="./styles/style.css" />
+		<link rel="shortcut icon" href="./images/favicon.svg" type="image/svg" />
+		<script
+			src="https://kit.fontawesome.com/58a7331457.js"
+			crossorigin="anonymous"
+		></script>
+	</head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Pomodoro Timer</title>
-  <link rel="stylesheet" href="./styles/style.css" />
-  <link rel="shortcut icon" href="./images/favicon.svg" type="image/svg">
-  <script src="https://kit.fontawesome.com/58a7331457.js" crossorigin="anonymous"></script>
-</head>
+	<body>
+		<div class="container">
+			<div class="pomodoro-timer-container grid-item">
+				<div class="time-container">
+					<div id="displayTime">
+						<h1><span class="units">MINS</span> <span id="mins"></span></h1>
+						<span class="separator">:</span>
+						<h1><span class="units">SECS</span> <span id="secs"></span></h1>
+					</div>
+					<div class="logo" id="logoSection">
+						<h1 id="logo-title">Pomodoro Timer</h1>
+						<ul id="instructions">
+							<li>
+								<h4>Pick a task you need to accomplish.</h4>
+							</li>
+							<li>
+								<h4>
+									Set a timer for 25-30 minutes, keep focused and start working.
+								</h4>
+							</li>
+							<li>
+								<h4>When the pomodoro timer rings, take a 5 minute break.</h4>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<div class="timer-control">
+					<form
+						class="task-select-container flex-col"
+						id="taskSelect"
+						name="taskSelectForm"
+					>
+						<label for="minsInputRange"
+							>Select Work Mins (min 20, max 60) <span id="workMins"></span>
+						</label>
+						<input
+							type="range"
+							min="20"
+							max="60"
+							step="1"
+							name="workMinsInput"
+							id="workMinsInput"
+							value="25"
+							class="input-range"
+							onchange="showWorkMins()"
+						/>
+						<label for="minsInputRange"
+							>Select Break Mins (min 5, max 30) <span id="breakMins"></span
+						></label>
+						<input
+							type="range"
+							min="5"
+							max="30"
+							step="1"
+							name="breakMinsInput"
+							id="breakMinsInput"
+							value="5"
+							class="input-range"
+							onchange="showBreakMins()"
+						/>
 
-<body>
-  <div class="container">
-    <div class="pomodoro-timer-container grid-item">
-      <div class="time-container">
-        <div id="displayTime">
-          <h1><span class="units">MINS</span> <span id="mins"></span></h1>
-          <span class="separator">:</span>
-          <h1><span class="units">SECS</span> <span id="secs"></span></h1>
-        </div>
-        <div class="logo" id="logoSection">
-          <h1 id="logo-title">Pomodoro Timer</h1>
-          <ul id="instructions">
-            <li>
-              <h4>Pick a task you need to accomplish.</h4>
-            </li>
-            <li>
-              <h4>Set a timer for 25-30 minutes, keep focused and start working.</h4>
-            </li>
-            <li>
-              <h4>When the pomodoro timer rings, take a 5 minute break.</h4>
-            </li>
-          </ul>
-        </div>
-      </div>
-      <div class="timer-control">
-        <form class="task-select-container flex-col" id="taskSelect" name="taskSelectForm">
-          <label for="minsInputRange">Select Work Mins (min 20, max 60) <span id="workMins"></span>
-          </label>
-          <input type="range" min="20" max="60" step="1" name="workMinsInput" id="workMinsInput" value="25"
-            class="input-range" onchange="showWorkMins()" />
-          <label for="minsInputRange">Select Break Mins (min 5, max 30) <span id="breakMins"></span></label>
-          <input type="range" min="5" max="30" step="1" name="breakMinsInput" id="breakMinsInput" value="5"
-            class="input-range" onchange="showBreakMins()" />
-
-          <select name="selectTaskInput" id="selectTaskInput" required>
-            <option class="hidden" value="" disabled selected>
-              👇 Select Task
-            </option>
-          </select>
-        </form>
-        <div class="buttons-container">
-          <img class="icon-button" id="startTimerButton" src="./images/start.svg" onclick="startPomodoro()"
-            alt="start timer" />
-          <img class="icon-button" id="pauseTimerButton" src="./images/pause.svg" onclick="pausePomodoro()"
-            alt="pause timer" />
-          <img class="icon-button" id="resetTimerButton" src="./images/reset.svg" onclick="resetTimer()"
-            alt="reset timer" />
-          <img class="icon-button" id="completedTaskButton" src="./images/completed.svg" onclick="completedTask()"
-            alt="start timer" />
-        </div>
-        <div class="active-task" id="activeTask"></div>
-      </div>
-    </div>
-    <div class="task-container grid-item flex-col">
-      <form class="task-form flex-col" id="taskListInput" name="todoListInputForm" onsubmit="addTask(event)">
-        <input class="task-input" type="text" name="taskTitleInput" id="taskTitle" placeholder="Task Title" autofocus
-          required />
-        <textarea class="task-input" name="taskDescription" id="taskDescInput" cols="30" rows="5"
-          placeholder="Task Description"></textarea>
-        <button class="button-btn" type="submit">Add Task</button>
-      </form>
-    </div>
-    <div class="task-list-container grid-item">
-      <div id="taskList"></div>
-    </div>
-  </div>
-  <audio id="audioFile" src="./sound/timp-up.mp3"></audio>
-  <script src="./src/app.js" type="module"></script>
-</body>
-
+						<select name="selectTaskInput" id="selectTaskInput" required>
+							<option class="hidden" value="" disabled selected>
+								👇 Select Task
+							</option>
+						</select>
+					</form>
+					<div class="buttons-container">
+						<img
+							class="icon-button"
+							id="startTimerButton"
+							src="./images/start.svg"
+							onclick="startPomodoro()"
+							alt="start timer"
+						/>
+						<img
+							class="icon-button"
+							id="pauseTimerButton"
+							src="./images/pause.svg"
+							onclick="pausePomodoro()"
+							alt="pause timer"
+						/>
+						<img
+							class="icon-button"
+							id="resetTimerButton"
+							src="./images/reset.svg"
+							onclick="resetTimer()"
+							alt="reset timer"
+						/>
+						<img
+							class="icon-button"
+							id="completedTaskButton"
+							src="./images/completed.svg"
+							onclick="completedTask()"
+							alt="start timer"
+						/>
+					</div>
+					<div class="active-task" id="activeTask"></div>
+				</div>
+			</div>
+			<div class="task-container grid-item flex-col">
+				<form
+					class="task-form flex-col"
+					id="taskListInput"
+					name="todoListInputForm"
+					onsubmit="addTask(event)"
+				>
+					<input
+						class="task-input"
+						type="text"
+						name="taskTitleInput"
+						id="taskTitle"
+						placeholder="Task Title"
+						autofocus
+						required
+					/>
+					<textarea
+						class="task-input"
+						name="taskDescription"
+						id="taskDescInput"
+						cols="30"
+						rows="5"
+						placeholder="Task Description"
+					></textarea>
+					<button class="button-btn" type="submit">Add Task</button>
+				</form>
+			</div>
+			<div class="task-list-container grid-item">
+				<div id="taskList"></div>
+			</div>
+		</div>
+		<audio id="audioFile" src="./sound/timp-up.mp3"></audio>
+		<script src="./src/app.js" type="module"></script>
+	</body>
 </html>

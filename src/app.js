@@ -69,8 +69,8 @@ const startPomodoro = () => {
 			document.getElementById("displayTime").style.display = "flex";
 			let task = taskList.find((task) => task.todoID == selectedTask);
 			currentTask = task;
+			addTaskToActiveList(currentTask);
 			console.log(task);
-			addTaskToActiveList(task);
 			setWorkBreakTime(2, 1);
 			startTimer();
 		} else {
@@ -118,4 +118,4 @@ window.pausePomodoro = pausePomodoro;
 window.completedTask = completedTask;
 window.showWorkMins = showWorkMins;
 window.showBreakMins = showBreakMins;
-export { taskList };
+export { taskList, currentTask };

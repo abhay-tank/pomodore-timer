@@ -3,6 +3,7 @@ import {
 	startTimer,
 	pauseTimer,
 	setWorkBreakTime,
+	updatepomodoroUI,
 } from "./components/pomodoroTimer.js";
 import { updateTaskSelect } from "./helper/updateTaskSelectMarkup.js";
 import { updateTaskListMarkup } from "./helper/updateTaskListMarkup.js";
@@ -19,6 +20,7 @@ window.onload = () => {
 	controlButtons.completedTaskButton.classList.add("disable");
 	showWorkMins();
 	showBreakMins();
+	updatepomodoroUI();
 };
 
 const addTask = (event) => {
@@ -64,14 +66,12 @@ const startPomodoro = () => {
 			selectedTask.length &&
 			selectedTask != ""
 		) {
-			document.getElementById("logoSection").style.display = "none";
 			document.getElementById("taskSelect").style.display = "none";
-			document.getElementById("displayTime").style.display = "flex";
 			let task = taskList.find((task) => task.todoID == selectedTask);
 			currentTask = task;
 			addTaskToActiveList(currentTask);
 			console.log(task);
-			setWorkBreakTime(2, 1);
+			setWorkBreakTime(workMins, breakMins);
 			startTimer();
 		} else {
 			throw new Error("Enter valid input");
@@ -112,10 +112,15 @@ const showBreakMins = () => {
 	document.getElementById("breakMins").innerHTML = breakMins;
 };
 
+const closeInstructions = () => {
+	document.getElementById("bannerSection").style.display = "none";
+};
+
 window.addTask = addTask;
 window.startPomodoro = startPomodoro;
 window.pausePomodoro = pausePomodoro;
 window.completedTask = completedTask;
 window.showWorkMins = showWorkMins;
 window.showBreakMins = showBreakMins;
+window.closeInstructions = closeInstructions;
 export { taskList, currentTask };

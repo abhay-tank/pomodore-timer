@@ -11,10 +11,8 @@ let work = 0;
 let pause = false;
 
 const updatepomodoroUI = () => {
-	// let displayTime = document.getElementById("displayTime");
-	// if (!displayTime.style.display) {
-	//   displayTime.style.display = "flex";
-	// }
+	document.getElementById("displayTime").style.display = "flex";
+	document.getElementById("status").style.display = "none";
 	const minsContainer = document.getElementById("mins");
 	const secsContainer = document.getElementById("secs");
 	let min = String(time.minutes).padStart(2, "0");
@@ -70,15 +68,14 @@ const resetTimer = () => {
 	currentTask.pauseTimer();
 	updatepomodoroUI();
 	document.getElementById("displayTime").style.display = "none";
-	document.getElementById("logoSection").style.display = "flex";
-	document.getElementById("instructions").style.display = "none";
+	document.getElementById("status").style.display = "flex";
 	if (work === true) {
 		time = { minutes: breakMins, seconds: 0 };
-		document.getElementById("logo-title").innerHTML = "Break Time";
+		document.getElementById("status").innerHTML = "Break Time";
 		work = false;
 	} else {
 		time = { minutes: workMins, seconds: 0 };
-		document.getElementById("logo-title").innerHTML = "Work Time";
+		document.getElementById("status").innerHTML = "Work Time";
 	}
 };
 
@@ -111,4 +108,5 @@ export {
 	getTime,
 	setTime,
 	setWorkBreakTime,
+	updatepomodoroUI,
 };

@@ -4,8 +4,8 @@
 	grid-area: timer;
 	display: grid;
 	grid-template-areas:
-		"timer"
-		"timer"
+		"timerDisplay"
+		"timerDisplay"
 		"timerControl";
 	background-color: var(--primary-yellow);
 	font-size: 2rem;
@@ -17,14 +17,14 @@
 }
 
 .time-container {
-	grid-area: timer;
+	grid-area: timerDisplay;
 	display: flex;
 	align-items: center;
 	justify-content: space-evenly;
 	color: var(--primary-black);
 }
 
-.logo {
+.banner {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -32,13 +32,13 @@
 	text-align: left;
 }
 
-.logo h1 {
+.banner h1 {
 	font-family: "Bungee Shade", cursive;
 	text-align: center;
 	font-size: 4rem;
 }
-#displayTime {
-	grid-area: timer;
+
+#status {
 	display: none;
 	align-items: center;
 	justify-content: space-evenly;
@@ -46,6 +46,15 @@
 	font-size: 3rem;
 	color: var(--primary-black);
 }
+
+#displayTime {
+	align-items: center;
+	justify-content: space-evenly;
+	font-family: "Bungee Shade", cursive;
+	font-size: 3rem;
+	color: var(--primary-black);
+}
+
 .time-container h1 {
 	margin: 0.5rem;
 }

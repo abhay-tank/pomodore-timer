@@ -6,77 +6,94 @@
 @import url("./taskList.css");
 html,
 body {
-  padding: 0;
-  margin: 0;
-  height: 100vh;
-  width: 100%;
-  /* font-family: "Ubuntu", sans-serif; */
-  font-family: "Dosis", sans-serif;
+	padding: 0;
+	margin: 0;
+	height: 100vh;
+	width: 100%;
+	/* font-family: "Ubuntu", sans-serif; */
+	font-family: "Dosis", sans-serif;
 }
 
 :root {
-  --primary-black: #242331;
-  --secondary-black: #2b4141;
-  --primary-blue: #0eb1d2;
-  --primary-yellow: #f4e04d;
+	--primary-black: #242331;
+	--secondary-black: #2b4141;
+	--primary-blue: #0eb1d2;
+	--primary-yellow: #f4e04d;
 }
 
 ::-webkit-scrollbar {
-  width: 6px;
+	width: 6px;
 }
 
 /* Track */
 ::-webkit-scrollbar-track {
-  background: var(--primary-black);
-  box-shadow: inset 0 0 5px var(--primary-black);
+	background: var(--primary-black);
+	box-shadow: inset 0 0 5px var(--primary-black);
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: var(--primary-yellow);
-  border: 1px solid var(--secondary-black);
+	background: var(--primary-yellow);
+	border: 1px solid var(--secondary-black);
 }
 
 .container {
-  height: 100vh;
-  min-width: 100%;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: auto;
-  grid-template-areas:
-    "timer task"
-    "timer taskList"
-    "timer taskList";
+	height: 100vh;
+	min-width: 100%;
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	grid-template-rows: auto;
+	grid-template-areas:
+		"timer task"
+		"timer taskList"
+		"timer taskList";
 }
 
 .grid-item {
-  border: 3px solid var(--primary-black);
+	border: 3px solid var(--primary-black);
+}
+
+.banner {
+	z-index: 99;
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	height: 100vh;
+	width: 100vw;
+	background-color: var(--primary-yellow);
+	color: var(--primary-black);
+}
+
+.banner h4 {
+	font-size: 2rem;
 }
 
 @media screen and (max-width: 1100px) {
-  .units {
-    display: inline;
-  }
+	.units {
+		display: inline;
+	}
 
-  .separator {
-    display: none;
-  }
-  .time-container {
-    width: 100%;
-    font-size: 2rem;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
+	.separator {
+		display: none;
+	}
+	.time-container {
+		width: 100%;
+		font-size: 2rem;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+	}
 }
 
 @media screen and (max-width: 600px) {
-  .timer-container {
-    font-size: 1rem;
-    width: auto;
-  }
+	.timer-container {
+		font-size: 1rem;
+		width: auto;
+	}
 
-  .time-container h1 * {
-    display: block;
-  }
+	.time-container h1 * {
+		display: block;
+	}
 }

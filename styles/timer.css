@@ -5,7 +5,7 @@
 	display: grid;
 	grid-template-areas:
 		"timerDisplay"
-		"timerDisplay"
+		"timerControl"
 		"timerControl";
 	background-color: var(--primary-yellow);
 	font-size: 2rem;
@@ -38,16 +38,18 @@
 	font-size: 4rem;
 }
 
-#status {
+.status {
+	height: 100%;
 	display: none;
 	align-items: center;
 	justify-content: space-evenly;
 	font-family: "Bungee Shade", cursive;
-	font-size: 3rem;
+	font-size: 5rem;
 	color: var(--primary-black);
 }
 
 #displayTime {
+	height: 100%;
 	align-items: center;
 	justify-content: space-evenly;
 	font-family: "Bungee Shade", cursive;

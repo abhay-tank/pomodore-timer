@@ -21,65 +21,70 @@ const updatepomodoroUI = () => {
 	secsContainer.innerHTML = sec;
 };
 
-const setTime = (newTime) => {
-	time = newTime;
-};
-
 const setWorkBreakTime = (workMin, breakMin) => {
 	workMins = workMin;
 	breakMins = breakMin;
 	if (!pause) {
+		// Check if first time... set Countdown time to WorkTime
 		if (work == 0) {
 			time = { minutes: workMins, seconds: 0 };
 			work = true;
+		} else if (work === true) {
+			// Check if work cycle was executed.. set Countdown time to BreakTime
+			time = { minutes: breakMins, seconds: 0 };
+			work = false;
 		} else {
-			if (work === true) {
-				time = { minutes: breakMins, seconds: 0 };
-				work = false;
-			} else {
-				time = { minutes: workMins, seconds: 0 };
-				work = true;
-			}
+			// Check if break cycle was executed.. set Countdown time to WorkTime
+			time = { minutes: workMins, seconds: 0 };
+			work = true;
+		}
+	} else if (time.minutes == 0 && time.seconds == 0) {
+		if (work == 0) {
+			time = { minutes: workMins, seconds: 0 };
+			work = true;
+		} else if (work === true) {
+			// Check if work cycle was executed.. set Countdown time to BreakTime
+			time = { minutes: breakMins, seconds: 0 };
+			work = false;
+		} else {
+			// Check if break cycle was executed.. set Countdown time to WorkTime
+			time = { minutes: workMins, seconds: 0 };
+			work = true;
 		}
 	}
-};
-
-const getTime = () => {
-	return time;
+	console.log("Pause status", pause, "time set to", time);
 };
 
 const pauseTimer = () => {
+	pause = true;
+	clearInterval(pomodoroInterval);
+	currentTask.pauseTimer();
 	controlButtons.startPomodoroTimerButton.classList.remove("disable");
 	controlButtons.pausePomodoroTimerButton.classList.add("disable");
 	controlButtons.resetPomodoroTimerButton.classList.remove("disable");
 	controlButtons.completedTaskButton.classList.remove("disable");
-	pause = true;
-	clearInterval(pomodoroInterval);
-	currentTask.pauseTimer();
 };
 
 const resetTimer = () => {
+	clearInterval(pomodoroInterval);
 	controlButtons.startPomodoroTimerButton.classList.remove("disable");
 	controlButtons.pausePomodoroTimerButton.classList.add("disable");
 	controlButtons.completedTaskButton.classList.remove("disable");
-	controlButtons.resetPomodoroTimerButton.classList.add("disable");
+	controlButtons.resetPomodoroTimerButton.classList.remove("disable");
 	document.getElementById("audioFile").play();
-	clearInterval(pomodoroInterval);
 	currentTask.pauseTimer();
 	updatepomodoroUI();
 	document.getElementById("displayTime").style.display = "none";
 	document.getElementById("status").style.display = "flex";
 	if (work === true) {
-		time = { minutes: breakMins, seconds: 0 };
 		document.getElementById("status").innerHTML = "Break Time";
-		work = false;
 	} else {
-		time = { minutes: workMins, seconds: 0 };
 		document.getElementById("status").innerHTML = "Work Time";
 	}
 };
 
 const startTimer = () => {
+	pause = false;
 	currentTask.startTimer();
 	controlButtons.startPomodoroTimerButton.classList.add("disable");
 	controlButtons.pausePomodoroTimerButton.classList.remove("disable");
@@ -90,23 +95,37 @@ const startTimer = () => {
 			time.minutes--;
 			time.seconds = 59;
 		}
-		if (time.minutes < 0) {
-			resetTimer();
-		}
 		if (time.minutes <= 0 && time.seconds <= 0) {
 			resetTimer();
+		} else {
+			updatepomodoroUI();
+			time.seconds--;
 		}
-		updatepomodoroUI();
-		time.seconds--;
 	}, 100);
+};
+
+const hardResetPomodoro = () => {
+	controlButtons.startPomodoroTimerButton.classList.remove("disable");
+	controlButtons.pausePomodoroTimerButton.classList.add("disable");
+	controlButtons.completedTaskButton.classList.remove("disable");
+	controlButtons.resetPomodoroTimerButton.classList.add("disable");
+	clearInterval(pomodoroInterval);
+	work = 0;
+	pause = 0;
+	time = {
+		minutes: 0,
+		seconds: 0,
+	};
+	workMins = 0;
+	breakMins = 0;
+	currentTask.pauseTimer();
+	updatepomodoroUI();
 };
 
 export {
 	startTimer,
 	pauseTimer,
-	resetTimer,
-	getTime,
-	setTime,
 	setWorkBreakTime,
 	updatepomodoroUI,
+	hardResetPomodoro,
 };

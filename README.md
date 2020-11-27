@@ -36,7 +36,7 @@ User can reset timer, which will reset timer to countdown from original values a
 
 1. Making project persistent using localstorage.
 
-2. Adding delete buttons for task.
+2. Adding delete button for task.
 
 3. Add skip active task which will remove the task from active status and put it back to task list.
 

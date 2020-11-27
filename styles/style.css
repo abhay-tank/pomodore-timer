@@ -87,8 +87,16 @@ body {
 	}
 }
 
-@media screen and (max-width: 600px) {
-	.timer-container {
+@media screen and (max-width: 1000px) {
+	.container {
+		grid-template-columns: 1fr;
+		grid-template-rows: auto;
+		grid-template-areas:
+			"timer"
+			"task"
+			"taskList";
+	}
+	.timer-container #displayTime {
 		font-size: 1rem;
 		width: auto;
 	}

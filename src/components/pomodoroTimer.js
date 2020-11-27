@@ -109,7 +109,7 @@ const startTimer = () => {
 			updatepomodoroUI();
 			time.seconds--;
 		}
-	}, 100);
+	}, 1000);
 };
 
 // Initialize values to 0

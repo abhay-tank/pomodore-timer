@@ -75,7 +75,7 @@ const startPomodoro = () => {
 			let task = taskList.find((task) => task.todoID == selectedTask);
 			currentTask = task;
 			addTaskToActiveList(currentTask);
-			setWorkBreakTime(2, 1);
+			setWorkBreakTime(workMins, breakMins);
 			startTimer();
 		} else {
 			throw new Error("Enter valid input");

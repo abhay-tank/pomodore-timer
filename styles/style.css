@@ -108,4 +108,9 @@ body {
 	.time-container h1 * {
 		display: block;
 	}
+
+	#displayTime h1,
+	.separator {
+		font-size: 3rem;
+	}
 }

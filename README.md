@@ -32,4 +32,14 @@ User can mark current task complete upon which Pomodoro timer will get paused. U
 
 User can reset timer, which will reset timer to countdown from original values again, though it won't clear active task.
 
+## Project Future
+
+1. Making project persistent using localstorage.
+
+2. Adding delete buttons for task.
+
+3. Add skip active task which will remove the task from active status and put it back to task list.
+
+4. Since we store time info of each task, Time Statistics can be computed and calculated.
+
 Project Hosted at https://abhay-tank.github.io/pomodoro-timer/

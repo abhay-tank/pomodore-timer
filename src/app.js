@@ -65,7 +65,7 @@ const startPomodoro = () => {
 		console.log(selectedTask);
 		if (
 			workMins >= 20 &&
-			workMins <= 30 &&
+			workMins <= 60 &&
 			breakMins >= 5 &&
 			breakMins <= 30 &&
 			selectedTask.length &&

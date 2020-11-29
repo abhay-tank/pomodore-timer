@@ -32,7 +32,6 @@ const addTask = (event) => {
 	try {
 		let taskTitle = document.forms.todoListInputForm.taskTitleInput.value;
 		let taskContent = document.forms.todoListInputForm.taskDescription.value;
-		console.log(taskTitle, taskContent);
 		if (taskTitle.length) {
 			let task = new Todo({
 				todoID:
@@ -62,7 +61,6 @@ const startPomodoro = () => {
 		let workMins = document.getElementById("workMinsInput").value;
 		let breakMins = document.getElementById("breakMinsInput").value;
 		let selectedTask = document.getElementById("selectTaskInput").value;
-		console.log(selectedTask);
 		if (
 			workMins >= 20 &&
 			workMins <= 60 &&

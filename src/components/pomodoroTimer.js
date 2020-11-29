@@ -57,7 +57,6 @@ const setWorkBreakTime = (workMin, breakMin) => {
 			work = true;
 		}
 	}
-	console.log("Pause status", pause, "time set to", time);
 };
 
 // Pause Timer
